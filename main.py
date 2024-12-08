@@ -7,9 +7,10 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 
 logger = logging.getLogger(__name__)
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-c", "--config", help="TOML file for bot token and server url")
-args = parser.parse_args()
+def create_parser(arg_list : list[str] | None = None):
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-c", "--config", help="TOML file for bot token and server url")
+	return parser
 
 def parse_config(config_file):
 	with open(config_file, "rb") as f:
@@ -23,13 +24,14 @@ def parse_config(config_file):
 	## get config for target server
 	TARGET_URL = config["server"]["url"]
 
-	return TOKEN, CHAT_ID, TARGET_URL
+	return TOKEN, CHAT_ID, BOT_NAME, TARGET_URL
 
-def main(args):
-	TARGET_URL, CHAT_ID, TARGET_URL = parse_config(args.config)
+def main(arg_list : list[str] | None = None):
+	args = create_parser(arg_list)
+	TARGET_URL, CHAT_ID, BOT_NAME, TARGET_URL = parse_config(args.config)
 
 
 
 if __name__ == "__main__":
-	main(args)
+	main()
 	

@@ -15,5 +15,4 @@ jobs:
           pip install toml pytest
       - name: Run test
         run: |
-          cd test/
-          pytest test_config_parsing.py		
+          pytest test/test_config_parsing.py		

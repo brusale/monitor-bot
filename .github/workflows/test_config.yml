@@ -16,5 +16,4 @@ jobs:
       - name: Run test
         run: |
           cd test/
-          pytest test_config_parsing.py
-		
+          pytest test_config_parsing.py		
